@@ -33,6 +33,7 @@
             font-size: 3.5rem;
             margin-bottom: 10px;
             font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
         header p {
@@ -46,7 +47,6 @@
             gap: 40px;
         }
 
-        /* Video Section */
         .section {
             background: white;
             border-radius: 12px;
@@ -80,21 +80,62 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
         }
 
         video {
             width: 100%;
             height: auto;
             display: block;
+            min-height: 400px;
         }
 
         .video-info {
-            margin-top: 20px;
             padding: 15px;
             background: #f5f5f5;
             border-radius: 8px;
             font-size: 0.95rem;
             color: #666;
+            margin-bottom: 20px;
+        }
+
+        .video-info strong {
+            color: #333;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
         }
 
         /* Gallery Section */
@@ -110,11 +151,13 @@
             overflow: hidden;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
 
         .gallery-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
         .gallery-item img {
@@ -124,16 +167,71 @@
             display: block;
         }
 
-        .gallery-item-name {
+        .gallery-item-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4), transparent);
             color: white;
-            padding: 15px 10px 10px;
-            font-size: 0.9rem;
-            font-weight: 500;
+            padding: 20px 15px 15px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .gallery-item-link {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(102, 126, 234, 0.9);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: background 0.3s ease, transform 0.2s ease;
+            opacity: 0;
+            transform: scale(0);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-item-link {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .gallery-item-link:hover {
+            background: rgba(118, 75, 162, 0.9);
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 2px solid #eee;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 5px;
         }
 
         /* Responsive */
@@ -146,13 +244,26 @@
                 padding: 25px;
             }
 
+            video {
+                min-height: 250px;
+            }
+
             .gallery {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
                 gap: 15px;
             }
 
             .gallery-item img {
-                height: 150px;
+                height: 180px;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
             }
         }
 
@@ -164,44 +275,18 @@
             opacity: 0.8;
         }
 
-        .btn-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #667eea;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: background 0.3s ease;
-            font-size: 0.9rem;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background: #764ba2;
-        }
-
-        .btn-secondary {
-            background: #f0f0f0;
-            color: #333;
-        }
-
-        .btn-secondary:hover {
-            background: #e0e0e0;
+        .divider {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #ccc, transparent);
+            margin: 30px 0;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Header -->
         <header>
-            <h1>InnSide Laundry</h1>
+            <h1>🏪 InnSide Laundry</h1>
             <p>Asset Collection & Media Hub</p>
         </header>
 
@@ -212,59 +297,116 @@
                 <div class="video-container">
                     <video controls poster="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/Facade%20-%20InnSide%20Laundry.JPG">
                         <source src="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/Ready%20to%20Wash%20%26%20Dry.mp4" type="video/mp4">
-                        Your browser does not support the video tag. 
-                        <a href="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/Ready%20to%20Wash%20%26%20Dry.mp4">Download video</a>
+                        <p>Your browser does not support the video tag. <a href="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/Ready%20to%20Wash%20%26%20Dry.mp4">Download the video instead</a></p>
                     </video>
                 </div>
+
                 <div class="video-info">
-                    <strong>Title:</strong> Ready to Wash & Dry<br>
-                    <strong>Format:</strong> MP4 Video<br>
-                    <strong>Size:</strong> ~852 KB
+                    <div><strong>Title:</strong> Ready to Wash & Dry</div>
+                    <div><strong>Format:</strong> MP4 Video</div>
+                    <div><strong>Size:</strong> 832 KB</div>
+                    <div><strong>Description:</strong> Professional laundry service promotional video showcasing InnSide Laundry facilities and services.</div>
                 </div>
+
                 <div class="btn-group">
-                    <a href="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/Ready%20to%20Wash%20%26%20Dry.mp4" class="btn" download>Download Video</a>
-                    <a href="https://github.com/innsidelaundry-boop/innside-assets" class="btn btn-secondary">View on GitHub</a>
+                    <a href="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/Ready%20to%20Wash%20%26%20Dry.mp4" class="btn" download>⬇️ Download Video</a>
+                    <a href="https://github.com/innsidelaundry-boop/innside-assets" class="btn btn-secondary">🔗 View on GitHub</a>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">1</div>
+                        <div class="stat-label">Video</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">7</div>
+                        <div class="stat-label">Images</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">~11 MB</div>
+                        <div class="stat-label">Total Size</div>
+                    </div>
                 </div>
             </section>
+
+            <div class="divider"></div>
 
             <!-- Image Gallery Section -->
             <section class="section">
                 <h2>🖼️ Image Gallery</h2>
+                <p style="color: #666; margin-bottom: 25px;">All professional assets and promotional materials</p>
+
                 <div class="gallery">
+                    <!-- Facade -->
                     <div class="gallery-item">
                         <img src="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/Facade%20-%20InnSide%20Laundry.JPG" alt="Facade - InnSide Laundry">
-                        <div class="gallery-item-name">Facade</div>
+                        <a href="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/Facade%20-%20InnSide%20Laundry.JPG" class="gallery-item-link" title="Download" download>⬇️</a>
+                        <div class="gallery-item-overlay">Facade</div>
                     </div>
+
+                    <!-- Couple Laundry -->
                     <div class="gallery-item">
                         <img src="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/Couple%20Laundry.png" alt="Couple Laundry">
-                        <div class="gallery-item-name">Couple Laundry</div>
+                        <a href="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/Couple%20Laundry.png" class="gallery-item-link" title="Download" download>⬇️</a>
+                        <div class="gallery-item-overlay">Couple Laundry</div>
                     </div>
+
+                    <!-- Logo -->
                     <div class="gallery-item">
                         <img src="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/Logo%201200PX%20-%20White.png" alt="Logo">
-                        <div class="gallery-item-name">Logo</div>
+                        <a href="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/Logo%201200PX%20-%20White.png" class="gallery-item-link" title="Download" download>⬇️</a>
+                        <div class="gallery-item-overlay">Logo</div>
                     </div>
+
+                    <!-- Photo 1 -->
                     <div class="gallery-item">
                         <img src="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/20250928_134414.jpg" alt="Photo 1">
-                        <div class="gallery-item-name">Photo 1</div>
+                        <a href="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/20250928_134414.jpg" class="gallery-item-link" title="Download" download>⬇️</a>
+                        <div class="gallery-item-overlay">Photo 1</div>
                     </div>
+
+                    <!-- Photo 2 -->
                     <div class="gallery-item">
                         <img src="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/20250928_141101.jpg" alt="Photo 2">
-                        <div class="gallery-item-name">Photo 2</div>
+                        <a href="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/20250928_141101.jpg" class="gallery-item-link" title="Download" download>⬇️</a>
+                        <div class="gallery-item-overlay">Photo 2</div>
                     </div>
+
+                    <!-- IG Post -->
                     <div class="gallery-item">
-                        <img src="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/IG%20Post%20Gratis%20Cuci.png" alt="IG Post">
-                        <div class="gallery-item-name">IG Post</div>
+                        <img src="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/IG%20Post%20Gratis%20Cuci.png" alt="IG Post - Free Wash">
+                        <a href="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/IG%20Post%20Gratis%20Cuci.png" class="gallery-item-link" title="Download" download>⬇️</a>
+                        <div class="gallery-item-overlay">IG Post</div>
                     </div>
+
+                    <!-- Member Post -->
                     <div class="gallery-item">
-                        <img src="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/Join%20Member%20Now.png" alt="Member Post">
-                        <div class="gallery-item-name">Member Post</div>
+                        <img src="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/Join%20Member%20Now.png" alt="Join Member Now">
+                        <a href="https://raw.githubusercontent.com/innsidelaundry-boop/innside-assets/main/Join%20Member%20Now.png" class="gallery-item-link" title="Download" download>⬇️</a>
+                        <div class="gallery-item-overlay">Member Post</div>
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">7</div>
+                        <div class="stat-label">Total Assets</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">PNG/JPG</div>
+                        <div class="stat-label">Formats</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Quality</div>
                     </div>
                 </div>
             </section>
         </div>
 
+        <!-- Footer -->
         <footer class="footer">
-            <p>© 2026 InnSide Laundry. All assets reserved.</p>
+            <p>© 2026 InnSide Laundry. All rights reserved. | <a href="https://github.com/innsidelaundry-boop/innside-assets" style="color: white; text-decoration: underline;">View Repository</a></p>
         </footer>
     </div>
 </body>
